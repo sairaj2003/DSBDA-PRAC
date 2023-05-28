@@ -1,0 +1,69 @@
+//Data cleaning
+//data integration
+//data transformation 
+//error correction
+//model building
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+df=pd.read_csv("/content/heart.csv")
+
+
+
+df.columns()
+
+df.describe()
+
+1) Data cleaning
+
+df.dropna(thresh=0.5 * len(df),axis=1)
+
+
+2)
+df1=df[['age','sex','cp','ca']].loc[0:15]
+df1
+df2=df[['age','sex','cp','ca']].loc[16:30]
+df2
+
+merge=pd.merge(df1,df2,on='age',how='inner')
+merge
+
+3) transformation:
+
+# Data transformation involves converting data into a different format or structure. In this
+# example, we will transform the heart disease dataset by converting the target column into binary
+# values (0 and 1).
+
+
+df['target']=df['target'].apply(lambda x:1 if x>0 else 0)
+df
+
+
+4)
+#Error Correction
+
+df = df.applymap(lambda x: df.mean() if x < 0 else x)
+df
+
+
+5) Model Building
+
+
+
+from sklearn.model_selection import train_test_split
+X = merge.drop(['age'], axis=1)
+y = merge['age']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Build the logistic regression model
+from sklearn.linear_model import LogisticRegression
+logreg = LogisticRegression()
+logreg.fit(X_train, y_train)
+
+# Evaluate the model
+from sklearn.metrics import classification_report, confusion_matrix
+y_pred = logreg.predict(X_test)
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))

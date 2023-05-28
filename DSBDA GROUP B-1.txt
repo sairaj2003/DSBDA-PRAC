@@ -1,0 +1,42 @@
+//Creating subset
+//merging
+//sorting
+//transpose
+//reshape
+
+
+
+
+1) subsets:
+
+#Creating first subset
+df1=df[['reviewerID','asin','reviewername']].loc[0:10]
+df1
+
+df2=df[['reviewerID','asin','reviewername']].loc[11:20]
+df2
+
+df3=df[['reviewerID','asin','reviewername']].loc[21:30]
+df3
+
+
+2) Merge
+
+merge=pd.concat([df1,df2,df3])
+merg
+
+3) sort:
+
+sort=df.sort_values('overallRating',ascending=False)
+sort
+
+
+4) transpose
+
+df.transpose()
+
+
+5)reshape:
+
+reshape=pd.pivot_table(df,index=['overallRating','helpful'],values='asin')
+reshape

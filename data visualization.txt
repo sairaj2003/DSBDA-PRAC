@@ -1,0 +1,38 @@
+//data visualization
+
+
+1)boxplot
+
+#boxplot
+sns.boxplot(x='target', y='age', data=df)
+
+
+2)histogram
+
+plt.hist(df['chol']) # Replace 'variable' with the column name you want to plot
+plt.xlabel('target') # Set the x-axis label
+plt.ylabel('chol') # Set the y-axis label
+plt.title('Histogram of target') # Set the title of the histogram
+
+
+3) multiline
+
+#multi line graph
+plt.figure(figsize=(10, 6)) # Adjust the figure size if needed
+plt.plot(df['age'], df['chol'])
+plt.xlabel('age') # Set the x-axis label
+plt.ylabel('chol') # Set the y-axis label
+plt.title('Line Graphs of age vs sex') # Set the title of the line graph
+plt.legend() # Display the legend
+plt.show() # Display the line graphs
+
+
+4)lineplot
+
+sns.lineplot(x='age',y='sex',data=df)
+
+
+5)regplot
+
+sns.regplot(x='age',y='sex',data=df)
+
